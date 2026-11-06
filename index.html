@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769e0">
+  <meta name="description" content="Infologika - informasi lowongan kerja, bisnis, teknologi, dan tutorial praktis.">
+  <title>Infologika — Informasi Praktis</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Infologika beranda">
+      <span class="brand-mark">i</span><span>Info<span class="brand-blue">logika</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <a href="#beranda" class="nav-link active">Beranda</a>
+      <a href="#artikel" class="nav-link">Artikel</a>
+      <a href="#tentang" class="nav-link">Tentang</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="installBtn" hidden title="Pasang aplikasi">↓ <span>Pasang</span></button>
+      <button class="admin-open" id="openAdminBtn">Admin</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="live-dot"></span> Wawasan untuk aktivitas sehari-hari</span>
+        <h1>Temukan informasi.<br><span>Tambah wawasan.</span></h1>
+        <p>Referensi praktis seputar pekerjaan, bisnis, teknologi, dan tutorial untuk membantu kamu melangkah lebih jauh.</p>
+        <a class="primary-btn" href="#artikel">Jelajahi artikel <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="hero-card">
+          <div class="hero-card-top"><span class="mini-logo">i</span><span class="tiny-label">INFOLOGIKA DAILY</span><span class="tiny-dot"></span></div>
+          <div class="hero-lines"><i></i><i></i><i></i></div>
+          <div class="hero-stat"><strong>01</strong><span>Mulai dari informasi yang tepat.</span></div>
+          <div class="hero-pills"><b>Karier</b><b>Teknologi</b><b>Bisnis</b></div>
+        </div>
+        <div class="floating-note"><span>✦</span> Ide baru setiap hari</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="artikel">
+      <div class="section-heading">
+        <div><span class="section-kicker">JELAJAHI</span><h2>Informasi pilihan</h2><p>Temukan topik yang sedang kamu butuhkan.</p></div>
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Cari artikel..." aria-label="Cari artikel"></div>
+      </div>
+      <div class="category-row" id="categoryRow" aria-label="Filter kategori"></div>
+      <div class="article-grid" id="articleGrid"></div>
+      <div class="empty-state" id="emptyState" hidden><div>⌕</div><h3>Artikel tidak ditemukan</h3><p>Coba kata kunci atau kategori lain.</p></div>
+    </section>
+
+    <section class="about-band" id="tentang">
+      <div class="about-icon">i</div>
+      <div><span class="section-kicker">TENTANG INFOLOGIKA</span><h2>Belajar hal baru, satu artikel dalam satu waktu.</h2><p>Infologika adalah ruang informasi praktis. Periksa kembali sumber dan tanggal setiap informasi, terutama untuk lowongan kerja dan peluang bisnis.</p></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">i</span><span>Info<span class="brand-blue">logika</span></span></a><span>© <span id="year"></span> Infologika. Informasi untuk semua.</span><a href="mailto:halo@infologika.example">Hubungi kami</a></footer>
+
+  <div class="modal-backdrop" id="articleModal" hidden>
+    <article class="article-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-btn" data-close="articleModal" aria-label="Tutup">×</button>
+      <div class="article-modal-meta" id="modalMeta"></div>
+      <h2 id="modalTitle"></h2>
+      <p class="article-lead" id="modalLead"></p>
+      <div class="article-body" id="modalBody"></div>
+      <p class="article-disclaimer">Catatan: periksa sumber resmi dan tanggal pembaruan sebelum mengambil keputusan.</p>
+    </article>
+  </div>
+
+  <div class="modal-backdrop" id="adminModal" hidden>
+    <section class="admin-panel" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <div class="admin-header"><div><span class="section-kicker">PENGELOLAAN KONTEN</span><h2 id="adminTitle">Dashboard Admin</h2></div><button class="close-btn" data-close="adminModal" aria-label="Tutup">×</button></div>
+      <div class="admin-notice"><strong>Mode demo lokal.</strong> Artikel yang ditambahkan tersimpan di browser/perangkat ini saja. Agar perubahan terlihat oleh semua pengunjung, aplikasi perlu dihubungkan ke database/backend sebelum dipublikasikan secara luas.</div>
+      <div class="admin-tabs"><button class="tab-btn selected" data-tab="editor">Tulis artikel</button><button class="tab-btn" data-tab="manage">Kelola artikel</button><button class="tab-btn" data-tab="backup">Cadangan data</button></div>
+      <div id="tab-editor" class="admin-tab">
+        <form id="articleForm">
+          <input type="hidden" id="articleId">
+          <label>Judul artikel<input id="articleTitle" required maxlength="100" placeholder="Contoh: Cara membuat CV yang menarik"></label>
+          <div class="form-two">
+            <label>Kategori<select id="articleCategory"><option>Karier</option><option>Bisnis</option><option>Teknologi</option><option>Tutorial</option></select></label>
+            <label>Estimasi baca<select id="articleRead"><option>2 menit</option><option>3 menit</option><option>4 menit</option><option>5 menit</option><option>6 menit</option><option>7 menit</option></select></label>
+          </div>
+          <label>Ringkasan<input id="articleExcerpt" required maxlength="180" placeholder="Ringkasan singkat artikel"></label>
+          <label>Isi artikel<textarea id="articleContent" required rows="8" placeholder="Tulis isi artikel. Pisahkan paragraf dengan baris kosong."></textarea></label>
+          <div class="form-actions"><button type="button" class="secondary-btn" id="resetFormBtn">Kosongkan</button><button type="submit" class="primary-btn">Simpan artikel</button></div>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+      <div id="tab-manage" class="admin-tab" hidden><div id="manageList" class="manage-list"></div></div>
+      <div id="tab-backup" class="admin-tab" hidden>
+        <p class="backup-copy">Ekspor artikel untuk menyimpan cadangan atau memindahkannya ke perangkat lain. Impor akan mengganti daftar artikel yang tersimpan di browser ini.</p>
+        <div class="backup-actions"><button class="secondary-btn" id="exportBtn">Ekspor JSON</button><label class="upload-btn">Impor JSON<input type="file" id="importInput" accept="application/json,.json" hidden></label><button class="danger-btn" id="restoreBtn">Pulihkan artikel contoh</button></div>
+        <p class="form-status" id="backupStatus" role="status"></p>
+      </div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
