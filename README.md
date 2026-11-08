@@ -72,3 +72,19 @@ infologika/
     ├── icon-192.png
     └── icon-512.png
 ```
+
+
+## Koneksi Supabase (versi online)
+File `app.js` sudah dikonfigurasi memakai Project URL dan Publishable Key project Infologika. Publishable key memang boleh berada di frontend; jangan pernah menaruh `sb_secret_` atau `service_role` key di file website.
+
+Fitur online:
+- Artikel publik dimuat dari tabel `public.articles` hanya jika `published = true`.
+- Admin login memakai Supabase Authentication dengan email dan password.
+- Admin dapat membuat, mengedit, menghapus, dan menerbitkan artikel.
+- Hak akses admin dibatasi oleh RLS berdasarkan User ID admin yang telah disiapkan di database.
+
+Catatan:
+- Perlu koneksi internet untuk login dan sinkronisasi artikel.
+- Pastikan akun admin yang dibuat di Supabase memiliki User ID yang sama dengan ID yang dipakai pada policy RLS.
+- Jangan menonaktifkan RLS.
+- Jika publishable key yang terpasang tidak valid, ganti nilai `SUPABASE_PUBLISHABLE_KEY` di bagian atas `app.js` dengan Publishable Key yang benar dari Supabase.
