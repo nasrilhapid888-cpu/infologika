@@ -78,7 +78,17 @@
   <div class="modal-backdrop" id="adminModal" hidden>
     <section class="admin-panel" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
       <div class="admin-header"><div><span class="section-kicker">PENGELOLAAN KONTEN</span><h2 id="adminTitle">Dashboard Admin</h2></div><button class="close-btn" data-close="adminModal" aria-label="Tutup">×</button></div>
-      <div class="admin-notice"><strong>Mode demo lokal.</strong> Artikel yang ditambahkan tersimpan di browser/perangkat ini saja. Agar perubahan terlihat oleh semua pengunjung, aplikasi perlu dihubungkan ke database/backend sebelum dipublikasikan secara luas.</div>
+      <div class="admin-notice"><strong>Admin online.</strong> Login menggunakan akun admin Supabase. Artikel yang diterbitkan akan tersimpan di database dan dapat dibaca pengunjung.</div>
+      <section id="loginPanel" class="admin-tab">
+        <form id="loginForm">
+          <label>Email admin<input id="loginEmail" type="email" required autocomplete="username" placeholder="Email akun admin"></label>
+          <label>Password<input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Password akun admin"></label>
+          <button type="submit" class="primary-btn">Login Admin</button>
+          <p class="form-status" id="loginStatus" role="status"></p>
+        </form>
+      </section>
+      <div id="adminWorkspace" hidden>
+        <div class="admin-user-row"><span id="adminUserLabel"></span><button type="button" class="secondary-btn" id="logoutBtn">Logout</button></div>
       <div class="admin-tabs"><button class="tab-btn selected" data-tab="editor">Tulis artikel</button><button class="tab-btn" data-tab="manage">Kelola artikel</button><button class="tab-btn" data-tab="backup">Cadangan data</button></div>
       <div id="tab-editor" class="admin-tab">
         <form id="articleForm">
@@ -90,6 +100,7 @@
           </div>
           <label>Ringkasan<input id="articleExcerpt" required maxlength="180" placeholder="Ringkasan singkat artikel"></label>
           <label>Isi artikel<textarea id="articleContent" required rows="8" placeholder="Tulis isi artikel. Pisahkan paragraf dengan baris kosong."></textarea></label>
+          <label class="publish-check"><input id="articlePublished" type="checkbox" checked> Terbitkan artikel (dapat dibaca pengunjung)</label>
           <div class="form-actions"><button type="button" class="secondary-btn" id="resetFormBtn">Kosongkan</button><button type="submit" class="primary-btn">Simpan artikel</button></div>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
@@ -100,8 +111,10 @@
         <div class="backup-actions"><button class="secondary-btn" id="exportBtn">Ekspor JSON</button><label class="upload-btn">Impor JSON<input type="file" id="importInput" accept="application/json,.json" hidden></label><button class="danger-btn" id="restoreBtn">Pulihkan artikel contoh</button></div>
         <p class="form-status" id="backupStatus" role="status"></p>
       </div>
+      </div>
     </section>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
 </body>
 </html>
