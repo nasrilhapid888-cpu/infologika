@@ -1,4 +1,4 @@
-const CACHE_NAME = "infologika-cache-v1";
+const CACHE_NAME = "infologika-cache-v2";
 const APP_FILES = ["./","./index.html","./styles.css","./app.js","./manifest.webmanifest","./assets/icon.svg"];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(APP_FILES)));self.skipWaiting();});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))));self.clients.claim();});
