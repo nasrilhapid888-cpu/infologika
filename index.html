@@ -69,6 +69,7 @@
       <button class="close-btn" data-close="articleModal" aria-label="Tutup">×</button>
       <div class="article-modal-meta" id="modalMeta"></div>
       <h2 id="modalTitle"></h2>
+      <img id="modalCover" class="modal-cover" alt="Gambar artikel" hidden>
       <p class="article-lead" id="modalLead"></p>
       <div class="article-body" id="modalBody"></div>
       <p class="article-disclaimer">Catatan: periksa sumber resmi dan tanggal pembaruan sebelum mengambil keputusan.</p>
@@ -99,6 +100,8 @@
             <label>Estimasi baca<select id="articleRead"><option>2 menit</option><option>3 menit</option><option>4 menit</option><option>5 menit</option><option>6 menit</option><option>7 menit</option></select></label>
           </div>
           <label>Ringkasan<input id="articleExcerpt" required maxlength="180" placeholder="Ringkasan singkat artikel"></label>
+          <label>Gambar thumbnail (JPG, PNG, atau WebP · Maksimal 3 MB)<input id="articleImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="image-help">Pilih gambar dari HP. Jika sedang mengedit dan tidak memilih gambar baru, gambar lama tetap digunakan.</small></label>
+          <div id="imagePreviewWrap" class="image-preview-wrap" hidden><img id="imagePreview" alt="Pratinjau gambar artikel"><button type="button" id="removeImageBtn" class="small-action delete">Batalkan pilihan gambar</button></div>
           <label>Isi artikel<textarea id="articleContent" required rows="8" placeholder="Tulis isi artikel. Pisahkan paragraf dengan baris kosong."></textarea></label>
           <label class="publish-check"><input id="articlePublished" type="checkbox" checked> Terbitkan artikel (dapat dibaca pengunjung)</label>
           <div class="form-actions"><button type="button" class="secondary-btn" id="resetFormBtn">Kosongkan</button><button type="submit" class="primary-btn">Simpan artikel</button></div>
